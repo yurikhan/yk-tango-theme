@@ -25,8 +25,8 @@
   `(yk-normal ((((min-colors 16777216)) . (:foreground ,aluminium3))
                (((min-colors 256)) . (:foreground ,gray18))))
   `(yk-ui ((default . (:inherit yk-normal :distant-foreground ,nil))
-           (((min-colors 16777216)) . (:background ,aluminium1))
-           (((min-colors 256)) . (:background ,gray8))))
+           (((min-colors 16777216)) . (:background ,aluminium0))
+           (((min-colors 256)) . (:background ,gray4))))
 ;;;; Buffer space
 ;;;;; `faces' — Basic Faces
   `(default ((((min-colors 16777216)) . (:background ,aluminium0 :foreground ,aluminium3))
@@ -61,8 +61,8 @@
              (((min-colors 256)) . (:background ,gray3))))
 
 ;;;;; `isearch' — Incremental search minor mode
-  `(isearch ((((min-colors 16777216)) . (:background ,chameleon2))
-             (((min-colors 256)) . (:background ,rgb120))))
+  `(isearch ((((min-colors 16777216)) . (:background ,aluminium1))
+             (((min-colors 256)) . (:background ,gray8))))
   `(isearch-fail ((((min-colors 16777216)) . (:background ,scarletred1))
                   (((min-colors 256)) . (:background ,rgb100))))
   `(lazy-highlight ((((min-colors 16777216)) . (:background ,chameleon1))
@@ -337,7 +337,7 @@
   `(fringe ((default . (:inherit yk-ui :underline nil :strike-through nil))))
   `(header-line ((default . (:inherit yk-ui))))
   ;; see also `tabbar'
-  `(mode-line ((default . (:inherit yk-ui :box (:line-width -1 :style released-button)))
+  `(mode-line ((default . (:inherit yk-ui))
                (((min-colors 16777216)) . (:background ,aluminium1))
                (((min-colors 256)) . (:background ,gray8))))
   `(mode-line-inactive ((default . (:inherit (yk-ui) :box (:line-width -1 :color ,black)))
@@ -385,7 +385,7 @@
            (((min-colors 256)) . (:foreground ,gray13))))
   `(linum-leading-zero ((default . (:inherit linum))
                         (((min-colors 16777216))
-                         . (:foreground ,aluminium1 :distant-foreground ,aluminium1))
+                         . (:foreground ,aluminium0 :distant-foreground ,aluminium0))
                         (((min-colors 256))
                          . (:foreground ,gray8 :distant-foreground ,gray8))))
 
@@ -393,16 +393,15 @@
   ;; Caveat: The code in `tabbar' that extracts background from this face
   ;; does not handle multiple inheritance.
   `(tabbar-default ((default . (:height 0.9 :inherit yk-ui))
-                    (((min-colors 16777216)) . (:background ,aluminium1))
+                    (((min-colors 16777216)) . (:background ,aluminium0))
                     (((min-colors 256)) . (:background ,gray8))))
   `(tabbar-highlight ((default . (:underline nil))))
   `(tabbar-button ((default . (:box unspecified))
-                   (((min-colors 16777216)) . (:foreground unspecified))))
+                   ;; (((min-colors 16777216)) . (:foreground unspecified))
+                   ))
   `(tabbar-button-highlight ((default . ())))
   `(tabbar-unselected ((default . (:inherit tabbar-default
-                                   :box (:line-width 1 :style released-button)))
-                       (((min-colors 16777216)) . (:background ,aluminium1))
-                       (((min-colors 256)) . (:background ,gray8))))
+                                   :box (:line-width 1 :color ,aluminium0)))))
   `(tabbar-selected ((default . (:inherit tabbar-unselected :foreground unspecified))
                      (((min-colors 16777216)) . (:background ,aluminium0 :overline ,skyblue4))
                      (((min-colors 256)) . (:background ,gray4))))
