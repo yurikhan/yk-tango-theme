@@ -672,8 +672,9 @@
   `(calendar-today ((default . (:inherit bold))))
   `(diary ((((min-colors 16777216)) . (:foreground ,orange3))
            (((min-colors 256)) . (:foreground ,rgb520))))
-  `(holiday ((((min-colors 16777216)) . (:foreground ,scarletred4))
-             (((min-colors 256)) . (:foreground ,rgb511))))
+  `(holiday ((((min-colors 16777216)) . (:foreground ,chocolate3))
+             (((min-colors 256)) . (:foreground ,rgb420))))
+  `(calendar-weekend-header ((default . (:inherit holiday))))
 ;;;;; `info'
   `(info-menu-star ((((min-colors 16777216)) . (:foreground ,plum4))
                     (((min-colors 256)) . (:foreground ,rgb323))))
