@@ -2,6 +2,7 @@
 
 (require 'yk-tango-colors)
 (require 'yk-term-colors)
+(require 'yk-color) ;; github:yurikhan/yk-color
 
 (defface yk-normal nil "Normal face")
 (defface yk-ui nil "UI parts, as opposed to document content.")
@@ -19,14 +20,31 @@
 ;;; Coverage guidelines
 ;; * Features that I personally use.
 
+;;; Auxiliary colors
+(defconst aluminium01 (yk-color-adjust aluminium0 1.1 aluminium0 aluminium1))
+(defconst aluminium02 (yk-color-adjust aluminium0 1.2 aluminium0 aluminium1))
+(defconst butter-bg (yk-color-blend aluminium0 0.05 butter3))
+(defconst butter-bg2 (yk-color-blend aluminium0 0.1 butter3))
+(defconst orange-bg (yk-color-blend aluminium0 0.2 orange3))
+(defconst chocolate-bg (yk-color-blend aluminium0 0.2 chocolate3))
+(defconst chameleon-bg (yk-color-blend aluminium0 0.1 chameleon3))
+(defconst chameleon-bg2 (yk-color-blend aluminium0 0.2 chameleon3))
+(defconst skyblue-bg (yk-color-blend aluminium0 0.1 skyblue4))
+(defconst skyblue-bg2 (yk-color-blend aluminium0 0.2 skyblue4))
+(defconst plum-bg (yk-color-blend aluminium0 0.2 plum3))
+(defconst plum30 (yk-color-adjust aluminium0 3.0 plum3 plum4))
+(defconst plum40 (yk-color-adjust aluminium0 4.5 plum4 plum5))
+(defconst scarletred-bg (yk-color-blend aluminium0 0.15 scarletred3))
+(defconst scarletred-bg2 (yk-color-blend aluminium0 0.3 scarletred3))
+
 ;;; Face customizations
 (custom-theme-set-faces 'yk-tango-dark
 ;;;; Base UI faces
   `(yk-normal ((((min-colors 16777216)) . (:foreground ,aluminium3))
                (((min-colors 256)) . (:foreground ,gray18))))
   `(yk-ui ((default . (:inherit yk-normal :distant-foreground ,nil))
-           (((min-colors 16777216)) . (:background ,aluminium0))
-           (((min-colors 256)) . (:background ,gray4))))
+           (((min-colors 16777216)) . (:background ,aluminium02))
+           (((min-colors 256)) . (:background ,gray6))))
 ;;;; Buffer space
 ;;;;; `faces' — Basic Faces
   `(default ((((min-colors 16777216)) . (:background ,aluminium0 :foreground ,aluminium3))
@@ -34,9 +52,9 @@
   `(cursor ((((min-colors 16777216)) . (:background ,skyblue4))
             (((min-colors 256)) . (:background ,rgb234))))
   `(highlight ((default . (:underline t))))
-  `(region ((((min-colors 16777216)) . (:background ,skyblue2 :distant-foreground unspecified))
-            (((min-colors 256)) . (:background ,gray6 :distant-foreground unspecified))))
-  `(secondary-selection ((((min-colors 16777216)) . (:background ,butter1))
+  `(region ((((min-colors 16777216)) . (:background ,skyblue-bg :distant-foreground unspecified))
+            (((min-colors 256)) . (:background ,rgb023 :distant-foreground unspecified))))
+  `(secondary-selection ((((min-colors 16777216)) . (:background ,butter-bg))
                          (((min-colors 256)) . (:background ,rgb210))))
   `(escape-glyph ((((min-colors 16777216)) . (:foreground ,scarletred5))
                   (((min-colors 256)) . (:foreground ,rgb522))))
@@ -44,29 +62,30 @@
                   (((min-colors 16777216)) . (:foreground ,scarletred4 :underline t))
                   (((min-colors 256)) . (:foreground ,rgb400 :underline t))))
   `(trailing-whitespace ((default . (:inherit yk-incorrect))))
-  `(match ((((min-colors 16777216)) . (:background ,aluminium1))
+  `(match ((default . (:underline ,butter3))
+           (((min-colors 16777216)) . (:background ,butter-bg))
            (((min-colors 256)) . (:background ,gray8))))
 
 ;;;;; `cua' — Emulate CUA key bindings including C-x and C-c
-  `(cua-global-mark ((((min-colors 16777216)) . (:background ,butter1))
+  `(cua-global-mark ((((min-colors 16777216)) . (:background ,butter-bg))
                      (((min-colors 256)) . (:background ,rgb210))))
   `(cua-rectangle ((default . (:inherit region))
-                   (((min-colors 16777216)) . (:background ,plum1))
+                   (((min-colors 16777216)) . (:background ,plum-bg))
                    (((min-colors 256)) . (:background ,rgb101))))
   `(cua-rectangle-noselect ((default . (:inherit region))
-                            (((min-colors 16777216)) . (:background ,chocolate1))
+                            (((min-colors 16777216)) . (:background ,chocolate-bg))
                             (((min-colors 256)) . (:background ,rgb110))))
 ;;;;; `hl-line' — Highlight the current line
-  `(hl-line ((((min-colors 16777216)) . (:background ,skyblue0))
-             (((min-colors 256)) . (:background ,gray3))))
+  `(hl-line ((((min-colors 16777216)) . (:background ,aluminium01))
+             (((min-colors 256)) . (:background ,gray5))))
 
 ;;;;; `isearch' — Incremental search minor mode
-  `(isearch ((((min-colors 16777216)) . (:background ,aluminium1))
-             (((min-colors 256)) . (:background ,gray8))))
-  `(isearch-fail ((((min-colors 16777216)) . (:background ,scarletred1))
+  `(isearch ((((min-colors 16777216)) . (:background ,skyblue-bg2))
+             (((min-colors 256)) . (:background ,rgb023))))
+  `(isearch-fail ((((min-colors 16777216)) . (:background ,scarletred-bg))
                   (((min-colors 256)) . (:background ,rgb100))))
-  `(lazy-highlight ((((min-colors 16777216)) . (:background ,chameleon1))
-                    (((min-colors 256)) . (:background ,rgb010))))
+  `(lazy-highlight ((((min-colors 16777216)) . (:background ,skyblue-bg))
+                    (((min-colors 256)) . (:background ,rgb012))))
 
 ;;;;; `whitespace' — Visualize blanks (TAB, (HARD) SPACE and NEWLINE)
   ;; see also: `escape-glyph'
@@ -92,9 +111,9 @@
   `(highlight-beyond-fill-column-face ((default . (:inherit yk-incorrect))))
 
 ;;;;; `paren-showing-faces' — Showing (un)matching of parens and expressions
-  `(show-paren-match ((((min-colors 16777216)) . (:background ,chameleon1))
+  `(show-paren-match ((((min-colors 16777216)) . (:background ,chameleon-bg))
                       (((min-colors 256)) . (:background ,rgb010))))
-  `(show-paren-mismatch ((((min-colors 16777216)) . (:background ,scarletred2))
+  `(show-paren-mismatch ((((min-colors 16777216)) . (:background ,scarletred-bg))
                          (((min-colors 256)) . (:background ,rgb300))))
 
 ;;;;; `smartparens'
@@ -120,10 +139,10 @@
 
 ;;;; Editing utility modes
 ;;;;; `bm' — Visible, buffer local bookmarks
-  `(bm-face ((((min-colors 16777216)) . (:background ,chocolate1))
+  `(bm-face ((((min-colors 16777216)) . (:background ,chocolate-bg))
              (((min-colors 256)) . (:background ,rgb100))))
   `(bm-fringe-face ((default . (:inherit bm-face))))
-  `(bm-persistent-face ((((min-colors 16777216)) . (:background ,orange1))
+  `(bm-persistent-face ((((min-colors 16777216)) . (:background ,orange-bg))
                         (((min-colors 256)) . (:background ,rgb210))))
 
 ;;;;; `hi-lock' — Interactively add and remove font-lock patterns for highlighting text
@@ -133,30 +152,30 @@
   ;; while top/bottom borders are drawn within character space,
   ;; left/right borders have their own width and cause characters to move.
   `(hi-blue ((((min-colors 16777216))
-              . (:background ,skyblue2 :underline ,skyblue4 :overline ,skyblue4))
-             (((min-colors 256)) . (:background ,rgb013))))
+              . (:background ,skyblue-bg :underline ,skyblue4 :overline nil))
+             (((min-colors 256)) . (:background ,rgb023))))
   `(hi-blue-b ((default . (:weight bold))
                (((min-colors 16777216)) . (:foreground ,skyblue4))
                (((min-colors 256)) . (:foreground ,rgb234))))
   `(hi-green ((((min-colors 16777216))
-               . (:background ,chameleon1 :underline ,chameleon4 :overline ,chameleon4))
+               . (:background ,chameleon-bg :underline ,chameleon3 :overline nil))
               (((min-colors 256)) . (:background ,rgb453))))
   `(hi-green-b ((default . (:weight bold))
                 (((min-colors 16777216)) . (:foreground ,chameleon2))
                 (((min-colors 256)) . (:foreground ,rgb120))))
   `(hi-pink ((((min-colors 16777216))
-              . (:background ,scarletred2 :underline ,scarletred4 :overline ,scarletred4))
+              . (:background ,scarletred-bg :underline ,scarletred3 :overline nil))
               (((min-colors 256)) . (:background ,rgb300))))
   `(hi-red-b ((default . (:weight bold))
               (((min-colors 16777216)) . (:foreground ,scarletred4))
               (((min-colors 256)) . (:foreground ,rgb511))))
   `(hi-yellow ((((min-colors 16777216))
-                . (:background ,butter1 :underline ,butter4 :overline ,butter4))
+                . (:background ,butter-bg2 :underline ,butter3 :overline nil))
                (((min-colors 256)) . (:background ,rgb210))))
 
 ;;;;; `diff-mode' — Major mode for viewing/editing diffs
-  `(diff-header ((((min-colors 16777216)) . (:background ,aluminium1))
-                 (((min-colors 256)) . (:background ,gray8))))
+  `(diff-header ((((min-colors 16777216)) . (:background ,aluminium01))
+                 (((min-colors 256)) . (:background ,gray5))))
   `(diff-file-header ((default . (:inherit diff-header :weight bold))))
   `(diff-hunk-header ((default . (:inherit diff-header))
                       (((min-colors 16777216)) . (:foreground ,skyblue5))
@@ -164,21 +183,21 @@
   `(diff-function ((default . (:inherit diff-hunk-header))))
   `(diff-context ((default . (:inherit default))))
   `(diff-added ((((min-colors 16777216)) . (:foreground ,chameleon2))
-                (((min-colors 256)) . (:foreground ,rgb120))))
-  `(diff-changed ((((min-colors 16777216)) . (:foreground ,orange2))
-                  (((min-colors 256)) . (:foreground ,rgb410))))
-  `(diff-removed ((((min-colors 16777216)) . (:foreground ,scarletred3))
-                  (((min-colors 256)) . (:foreground ,rgb400))))
-  `(diff-refine-added ((((min-colors 16777216)) . (:background ,chameleon1))
+                (((min-colors 256)) . (:foreground ,rgb352))))
+  `(diff-changed ((((min-colors 16777216)) . (:foreground ,orange5))
+                  (((min-colors 256)) . (:foreground ,rgb542))))
+  `(diff-removed ((((min-colors 16777216)) . (:foreground ,scarletred5))
+                  (((min-colors 256)) . (:foreground ,rgb522))))
+  `(diff-refine-added ((((min-colors 16777216)) . (:background ,chameleon-bg))
                        (((min-colors 256)) . (:background ,rgb010))))
-  `(diff-refine-changed ((((min-colors 16777216)) . (:background ,butter1))
+  `(diff-refine-changed ((((min-colors 16777216)) . (:background ,butter-bg))
                          (((min-colors 256)) . (:background ,rgb210))))
-  `(diff-refine-removed ((((min-colors 16777216)) . (:background ,scarletred1))
+  `(diff-refine-removed ((((min-colors 16777216)) . (:background ,scarletred-bg))
                          (((min-colors 256)) . (:background ,rgb100))))
 
 ;;;;; `ediff-mode' — Comprehensive visual interface to ‘diff’ and ‘patch’
-  `(ediff-even-diff-Ancestor ((((min-colors 16777216)) . (:background ,butter1))
-                              (((min-colors 256)) . (:background ,rgb210))))
+  `(ediff-even-diff-Ancestor ((((min-colors 16777216)) . (:background ,butter-bg))
+                              (((min-colors 256)) . (:background ,gray6))))
   `(ediff-even-diff-A ((default . (:inherit ediff-even-diff-Ancestor))))
   `(ediff-even-diff-B ((default . (:inherit ediff-even-diff-Ancestor))))
   `(ediff-even-diff-C ((default . (:inherit ediff-even-diff-Ancestor))))
@@ -186,34 +205,38 @@
   `(ediff-odd-diff-A ((default . (:inherit ediff-odd-diff-Ancestor))))
   `(ediff-odd-diff-B ((default . (:inherit ediff-odd-diff-Ancestor))))
   `(ediff-odd-diff-C ((default . (:inherit ediff-odd-diff-Ancestor))))
-  `(ediff-current-diff-Ancestor ((((min-colors 16777216)) . (:background ,butter1))
-                                 (((min-colors 256)) . (:background ,rgb210))))
-  `(ediff-current-diff-A ((((min-colors 16777216)) . (:background ,scarletred1))
+  `(ediff-current-diff-Ancestor ((((min-colors 16777216)) . (:background ,butter-bg))
+                                 (((min-colors 256)) . (:background ,gray6))))
+  `(ediff-current-diff-A ((((min-colors 16777216)) . (:background ,scarletred-bg))
                           (((min-colors 256)) . (:background ,rgb100))))
-  `(ediff-current-diff-B ((((min-colors 16777216)) . (:background ,chameleon1))
+  `(ediff-current-diff-B ((((min-colors 16777216)) . (:background ,chameleon-bg))
                           (((min-colors 256)) . (:background ,rgb010))))
-  `(ediff-current-diff-C ((((min-colors 16777216)) . (:background ,skyblue2))
+  `(ediff-current-diff-C ((((min-colors 16777216)) . (:background ,skyblue-bg))
                           (((min-colors 256)) . (:background ,rgb012))))
-  `(ediff-fine-diff-Ancestor ((default . (:inherit ediff-current-diff-Ancestor))
-                              (((min-colors 16777216)) . (:foreground ,butter5))
-                              (((min-colors 256)) . (:foreground ,rgb552))))
-  `(ediff-fine-diff-A ((default . (:inherit ediff-current-diff-A))
-                       (((min-colors 16777216)) . (:foreground ,scarletred5))
-                       (((min-colors 256)) . (:foreground ,rgb522))))
-  `(ediff-fine-diff-B ((default . (:inherit ediff-current-diff-B))
-                       (((min-colors 16777216)) . (:foreground ,chameleon5))
-                       (((min-colors 256)) . (:foreground ,rgb352))))
-  `(ediff-fine-diff-C ((default . (:inherit ediff-current-diff-C))
-                       (((min-colors 16777216)) . (:foreground ,skyblue5))
-                       (((min-colors 256)) . (:foreground ,rgb345))))
+  `(ediff-fine-diff-Ancestor
+    ((default . (:inherit ediff-current-diff-Ancestor))
+     (((min-colors 16777216)) . (:background ,butter-bg2))
+     (((min-colors 256)) . (:background ,gray6 :foreground ,rgb552))))
+  `(ediff-fine-diff-A
+    ((default . (:inherit ediff-current-diff-A))
+     (((min-colors 16777216)) . (:background ,scarletred-bg2))
+     (((min-colors 256)) . (:background ,rgb100 :foreground ,rgb522))))
+  `(ediff-fine-diff-B
+    ((default . (:inherit ediff-current-diff-B))
+     (((min-colors 16777216)) . (:background ,chameleon-bg2))
+     (((min-colors 256)) . (:background ,rgb010 :foreground ,rgb352))))
+  `(ediff-fine-diff-C
+    ((default . (:inherit ediff-current-diff-C))
+     (((min-colors 16777216)) . (:background ,skyblue-bg2))
+     (((min-colors 256)) . (:foreground ,rgb345))))
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Diff
   `(magit-section-heading ((default . (:inherit bold))))
   `(magit-section-highlight ((default . (:inherit hl-line))))
   `(magit-section-heading-selection ((default (:inherit region magit-section-highlight))))
   `(magit-diff-file-heading ((default . (:inherit diff-file-header))))
-  `(yk-magit-diff-highlight ((((min-colors 16777216)) . (:background ,aluminium1))
-                             (((min-colors 256)) . (:background ,gray8))))
+  `(yk-magit-diff-highlight ((((min-colors 16777216)) . (:background ,aluminium02))
+                             (((min-colors 256)) . (:background ,gray6))))
   `(magit-diff-file-heading-highlight ((default . (:inherit (yk-magit-diff-highlight
                                                              magit-diff-file-heading)))))
   `(magit-diff-file-heading-selection ((default . (:inherit (region
@@ -254,7 +277,7 @@
 
 ;;;; Programming modes
 ;;;;; `font-lock' — Faces for highlighting text
-  `(font-lock-keyword-face ((((min-colors 16777216)) . (:foreground ,plum5))
+  `(font-lock-keyword-face ((((min-colors 16777216)) . (:foreground ,plum40))
                             (((min-colors 256)) . (:foreground ,rgb434))))
   `(font-lock-comment-face ((((min-colors 16777216)) . (:foreground ,aluminium2))
                             (((min-colors 256)) . (:foreground ,gray13))))
@@ -266,15 +289,15 @@
                              (((min-colors 256)) . (:foreground ,rgb234))))
   `(font-lock-function-name-face ((((min-colors 16777216)) . (:foreground ,skyblue5))
                                   (((min-colors 256)) . (:foreground ,rgb345))))
-  `(font-lock-variable-name-face ((((min-colors 16777216)) . (:foreground ,orange3))
+  `(font-lock-variable-name-face ((((min-colors 16777216)) . (:foreground ,orange2))
                                   (((min-colors 256)) . (:foreground ,rgb520))))
-  `(font-lock-builtin-face ((((min-colors 16777216)) . (:foreground ,plum4))
+  `(font-lock-builtin-face ((((min-colors 16777216)) . (:foreground ,plum30))
                             (((min-colors 256)) . (:foreground ,rgb323))))
   `(font-lock-warning-face ((default . (:inherit warning))))
 
 ;;;;; `nxml-faces' — New XML editing mode
-  `(yk-nxml-cdata ((((min-colors 16777216)) . (:background ,skyblue0))
-                   (((min-colors 256)) . (:background ,gray3))))
+  `(yk-nxml-cdata ((((min-colors 16777216)) . (:background ,aluminium01))
+                   (((min-colors 256)) . (:background ,gray5))))
   `(nxml-delimiter ((((min-colors 16777216)) . (:foreground ,aluminium2))
                     (((min-colors 256)) . (:foreground ,gray13))))
   `(nxml-name ((((min-colors 16777216)) . (:foreground ,plum4))
@@ -282,20 +305,20 @@
   `(nxml-cdata-section-delimiter ((default . (:inherit (nxml-delimiter yk-nxml-cdata)))))
   `(nxml-cdata-section-CDATA ((default . (:inherit (nxml-name yk-nxml-cdata)))))
   `(nxml-cdata-section-content ((default . (:inherit (nxml-text yk-nxml-cdata)))))
-  `(nxml-element-local-name ((((min-colors 16777216)) . (:foreground ,skyblue3))
+  `(nxml-element-local-name ((((min-colors 16777216)) . (:foreground ,skyblue4))
                              (((min-colors 256)) . (:foreground ,rgb123))))
 
 ;;;;; `web-mode' — Major mode for editing web templates
-  `(web-mode-block-face ((((min-colors 16777216)) . (:background ,butter0))
-                         (((min-colors 256)) . (:background ,gray3)))) ;todo
+  `(web-mode-block-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                         (((min-colors 256)) . (:background ,gray5)))) ;todo
   `(web-mode-block-attr-name-face ((((min-colors 16777216)) . (:foreground ,chameleon4))
                                     (((min-colors 256)) . (:foreground ,rgb251)))) ;todo
   `(web-mode-block-attr-value-face ((((min-colors 16777216)) . (:foreground ,skyblue4))
                                     (((min-colors 256)) . (:foreground ,rgb234)))) ;todo
-  `(web-mode-current-column-highlight-face ((((min-colors 16777216)) . (:background ,skyblue0))
-                                            (((min-colors 256)) . (:background ,gray3))))
-  `(web-mode-current-element-highlight-face ((((min-colors 16777216)) . (:background ,skyblue0))
-                                             (((min-colors 256)) . (:background ,gray3))))
+  `(web-mode-current-column-highlight-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                                            (((min-colors 256)) . (:background ,gray5))))
+  `(web-mode-current-element-highlight-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                                             (((min-colors 256)) . (:background ,gray5))))
   `(web-mode-doctype-face ((((min-colors 16777216)) . (:foreground ,aluminium2))
                            (((min-colors 256)) . (:foreground ,gray13))))
   `(web-mode-error-face ((default . (:inherit yk-incorrect))))
@@ -303,25 +326,25 @@
   `(web-mode-html-entity-face ((default . (:inherit nxml-entity-ref-name))))
   `(web-mode-html-tag-bracket-face ((default . (:inherit nxml-tag-delimiter))))
   `(web-mode-html-tag-face ((default . (:inherit nxml-element-local-name))))
-  `(web-mode-inlay-face ((((min-colors 16777216)) . (:background ,butter1))
-                         (((min-colors 256)) . (:background ,gray3))))
+  `(web-mode-inlay-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                         (((min-colors 256)) . (:background ,gray5))))
   `(web-mode-json-context-face ((default . (:inherit web-mode-json-key-face))
                                 (((min-colors 16777216)) . (:foreground ,plum3))
                                 (((min-colors 256)) . (:foreground ,rgb212))))
   `(web-mode-json-key-face ((default . (:inherit font-lock-variable-name-face))))
-  `(web-mode-jsx-depth-1-face ((((min-colors 16777216)) . (:background ,skyblue0))
-                               (((min-colors 256)) . (:background ,gray3))))
-  `(web-mode-jsx-depth-2-face ((((min-colors 16777216)) . (:background ,black))
-                               (((min-colors 256)) . (:background ,rgb000))))
-  `(web-mode-jsx-depth-3-face ((((min-colors 16777216)) . (:background ,black))
-                               (((min-colors 256)) . (:background ,rgb000))))
-  `(web-mode-jsx-depth-4-face ((((min-colors 16777216)) . (:background ,black))
-                               (((min-colors 256)) . (:background ,rgb000))))
+  `(web-mode-jsx-depth-1-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                               (((min-colors 256)) . (:background ,gray5))))
+  `(web-mode-jsx-depth-2-face ((((min-colors 16777216)) . (:background ,aluminium02))
+                               (((min-colors 256)) . (:background ,gray6))))
+  `(web-mode-jsx-depth-3-face ((((min-colors 16777216)) . (:background ,aluminium01))
+                               (((min-colors 256)) . (:background ,gray5))))
+  `(web-mode-jsx-depth-4-face ((((min-colors 16777216)) . (:background ,aluminium02))
+                               (((min-colors 256)) . (:background ,gray6))))
   `(web-mode-param-name-face ((((min-colors 16777216)) . (:foreground ,aluminium2))
                               (((min-colors 256)) . (:foreground ,gray13))))
   `(web-mode-symbol-face ((((min-colors 16777216)) . (:foreground ,orange2))
                           (((min-colors 256)) . (:foreground ,rgb410))))
-  `(web-mode-whitespace-face ((((min-colors 16777216)) . (:background ,plum1))
+  `(web-mode-whitespace-face ((((min-colors 16777216)) . (:background ,plum-bg))
                               (((min-colors 256)) . (:background ,rgb101))))
 
 ;;;; UI space
@@ -332,13 +355,14 @@
   `(tty-menu-enabled-face ((default . (:inherit menu))))
   `(tty-menu-disabled-face ((default . (:inherit (shadow menu)))))
   `(tty-menu-selected-face ((default . (:inherit menu))
-                            (((min-colors 16777216)) . (:background ,skyblue3))
-                            (((min-colors 256)) . (:background ,rgb013))))
+                            (((min-colors 16777216)) . (:background ,skyblue-bg))
+                            (((min-colors 256)) . (:background ,rgb023))))
   `(fringe ((default . (:inherit yk-ui :underline nil :strike-through nil))))
   `(header-line ((default . (:inherit yk-ui))))
   ;; see also `tabbar'
   `(mode-line ((default . (:inherit yk-ui))
-               (((min-colors 16777216)) . (:background ,aluminium1))
+               (((min-colors 16777216)) . (:background ,aluminium1
+                                           :box (:line-width -1 :color ,aluminium1)))
                (((min-colors 256)) . (:background ,gray8))))
   `(mode-line-inactive ((default . (:inherit (yk-ui) :box (:line-width -1 :color ,black)))
                         (((min-colors 16777216)) . (:foreground ,aluminium2))
@@ -360,7 +384,7 @@
 
 ;;;;; `tooltip'
   `(tooltip ((default . (:inherit (yk-normal variable-pitch)))
-             (((min-colors 16777216)) . (:background ,skyblue0))
+             (((min-colors 16777216)) . (:background ,skyblue-bg))
              (((min-colors 256)) . (:background ,gray3))))
 
 ;;;;; `git-gutter' — Port GitGutter
@@ -381,29 +405,27 @@
 
 ;;;;; `linum' — Show line numbers in the left margin
   `(linum ((default . (:inherit fringe))
-           (((min-colors 16777216)) . (:foreground ,aluminium3))
+           (((min-colors 16777216)) . (:foreground ,aluminium2))
            (((min-colors 256)) . (:foreground ,gray13))))
   `(linum-leading-zero ((default . (:inherit linum))
                         (((min-colors 16777216))
-                         . (:foreground ,aluminium0 :distant-foreground ,aluminium0))
+                         . (:foreground ,aluminium02 :distant-foreground ,aluminium02))
                         (((min-colors 256))
-                         . (:foreground ,gray8 :distant-foreground ,gray8))))
+                         . (:foreground ,gray6 :distant-foreground ,gray6))))
 
 ;;;;; `tabbar' — Display a tab bar in the header line
   ;; Caveat: The code in `tabbar' that extracts background from this face
   ;; does not handle multiple inheritance.
   `(tabbar-default ((default . (:height 0.9 :inherit yk-ui))
-                    (((min-colors 16777216)) . (:background ,aluminium0))
+                    (((min-colors 16777216)) . (:background ,aluminium02))
                     (((min-colors 256)) . (:background ,gray8))))
   `(tabbar-highlight ((default . (:underline nil))))
-  `(tabbar-button ((default . (:box unspecified))
-                   ;; (((min-colors 16777216)) . (:foreground unspecified))
-                   ))
+  `(tabbar-button ((default . (:box unspecified))))
   `(tabbar-button-highlight ((default . ())))
   `(tabbar-unselected ((default . (:inherit tabbar-default
-                                   :box (:line-width 1 :color ,aluminium0)))))
+                                   :box (:line-width 1 :color ,aluminium1)))))
   `(tabbar-selected ((default . (:inherit tabbar-unselected :foreground unspecified))
-                     (((min-colors 16777216)) . (:background ,aluminium0 :overline ,skyblue4))
+                     (((min-colors 16777216)) . (:background ,aluminium01 :overline ,skyblue4))
                      (((min-colors 256)) . (:background ,gray4))))
 
 ;;;;; `widget-faces' — Faces used by the widget library
@@ -424,8 +446,8 @@
 
   `(custom-button ((default . (:inherit yk-ui :box (:line-width 2 :style released-button)))))
   `(custom-button-mouse ((default . (:inherit custom-button))
-                         (((min-colors 16777216)) . (:background ,aluminium2))
-                         (((min-colors 256)) . (:background ,gray13))))
+                         (((min-colors 16777216)) . (:background ,aluminium02))
+                         (((min-colors 256)) . (:background ,gray6))))
   `(custom-button-pressed ((default . (:inherit custom-button
                                        :box (:line-width 2 :style pressed-button)))))
   `(custom-button-unraised ((default . (:inherit underline))))
@@ -523,23 +545,23 @@
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Commit references
   `(magit-hash ((default . (:inherit shadow))))
-  `(magit-branch-local ((((min-colors 16777216)) . (:foreground ,chameleon4 :background ,chameleon0
+  `(magit-branch-local ((((min-colors 16777216)) . (:foreground ,chameleon4 :background ,chameleon-bg
                                                     :box (:line-width -1 :color ,chameleon4)))
                         (((min-colors 256)) . (:foreground ,rgb251 :background ,rgb000))))
   `(magit-branch-current ((default . (:inherit (bold magit-branch-local)))))
-  `(magit-branch-remote ((((min-colors 16777216)) . (:foreground ,orange4 :background ,orange0
+  `(magit-branch-remote ((((min-colors 16777216)) . (:foreground ,orange4 :background ,orange-bg
                                                      :box (:line-width -1 :color ,orange4)))
                          (((min-colors 256)) . (:foreground ,rgb530 :background ,rgb000))))
-  `(magit-tag ((((min-colors 16777216)) . (:foreground ,butter4 :background ,butter0
+  `(magit-tag ((((min-colors 16777216)) . (:foreground ,butter4 :background ,butter-bg
                                            :box (:line-width -1 :color ,butter2)))
                (((min-colors 256)) . (:foreground ,rgb551 :background ,rgb000))))
-  `(magit-bisect-bad ((((min-colors 16777216)) . (:foreground ,plum4 :background ,plum0
+  `(magit-bisect-bad ((((min-colors 16777216)) . (:foreground ,plum4 :background ,plum-bg
                                                   :box (:line-width -1 :color ,plum4)))
                       (((min-colors 256)) . (:foreground ,rgb323 :background ,rgb000))))
-  `(magit-bisect-good ((((min-colors 16777216)) . (:foreground ,skyblue4 :background ,skyblue0
+  `(magit-bisect-good ((((min-colors 16777216)) . (:foreground ,skyblue4 :background ,skyblue-bg
                                                    :box (:line-width -1 :color ,skyblue4)))
                        (((min-colors 256)) . (:foreground ,rgb234 :background ,rgb000))))
-  `(magit-bisect-skip ((((min-colors 16777216)) . (:foreground ,chocolate3 :background ,chocolate0
+  `(magit-bisect-skip ((((min-colors 16777216)) . (:foreground ,chocolate3 :background ,chocolate-bg
                                                    :box (:line-width -1 :color ,chocolate4)))
                        (((min-colors 256)) . (:foreground ,rgb420 :background ,rgb000))))
   `(magit-refname ((((min-colors 16777216)) . (:foreground ,aluminium3 :background ,black
@@ -554,8 +576,8 @@
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Blame
   `(magit-blame-heading ((default . (:inherit (shadow default)))
-                         (((min-colors 16777216)) . (:background ,skyblue0))
-                         (((min-colors 256)) . (:background ,gray3))))
+                         (((min-colors 16777216)) . (:background ,aluminium01))
+                         (((min-colors 256)) . (:background ,gray5))))
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Log
   `(magit-log-author ((default . (:inherit yk-normal))))
