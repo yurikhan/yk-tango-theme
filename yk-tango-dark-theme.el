@@ -545,28 +545,21 @@
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Commit references
   `(magit-hash ((default . (:inherit shadow))))
-  `(magit-branch-local ((((min-colors 16777216)) . (:foreground ,chameleon4 :background ,chameleon-bg
-                                                    :box (:line-width -1 :color ,chameleon4)))
-                        (((min-colors 256)) . (:foreground ,rgb251 :background ,rgb000))))
+  `(magit-branch-local ((((min-colors 16777216)) . (:foreground ,chameleon4))
+                        (((min-colors 256)) . (:foreground ,rgb251))))
   `(magit-branch-current ((default . (:inherit (bold magit-branch-local)))))
-  `(magit-branch-remote ((((min-colors 16777216)) . (:foreground ,orange4 :background ,orange-bg
-                                                     :box (:line-width -1 :color ,orange4)))
-                         (((min-colors 256)) . (:foreground ,rgb530 :background ,rgb000))))
-  `(magit-tag ((((min-colors 16777216)) . (:foreground ,butter4 :background ,butter-bg
-                                           :box (:line-width -1 :color ,butter2)))
-               (((min-colors 256)) . (:foreground ,rgb551 :background ,rgb000))))
-  `(magit-bisect-bad ((((min-colors 16777216)) . (:foreground ,plum4 :background ,plum-bg
-                                                  :box (:line-width -1 :color ,plum4)))
-                      (((min-colors 256)) . (:foreground ,rgb323 :background ,rgb000))))
-  `(magit-bisect-good ((((min-colors 16777216)) . (:foreground ,skyblue4 :background ,skyblue-bg
-                                                   :box (:line-width -1 :color ,skyblue4)))
-                       (((min-colors 256)) . (:foreground ,rgb234 :background ,rgb000))))
-  `(magit-bisect-skip ((((min-colors 16777216)) . (:foreground ,chocolate3 :background ,chocolate-bg
-                                                   :box (:line-width -1 :color ,chocolate4)))
-                       (((min-colors 256)) . (:foreground ,rgb420 :background ,rgb000))))
-  `(magit-refname ((((min-colors 16777216)) . (:foreground ,aluminium3 :background ,black
-                                               :box (:line-width -1 :color ,aluminium4)))
-                   (((min-colors 256)) . (:foreground ,gray18 :background ,rgb000))))
+  `(magit-branch-remote ((((min-colors 16777216)) . (:foreground ,orange4))
+                         (((min-colors 256)) . (:foreground ,rgb530))))
+  `(magit-tag ((((min-colors 16777216)) . (:foreground ,butter4))
+               (((min-colors 256)) . (:foreground ,rgb551))))
+  `(magit-bisect-bad ((((min-colors 16777216)) . (:foreground ,plum4))
+                      (((min-colors 256)) . (:foreground ,rgb323))))
+  `(magit-bisect-good ((((min-colors 16777216)) . (:foreground ,skyblue4))
+                       (((min-colors 256)) . (:foreground ,rgb234))))
+  `(magit-bisect-skip ((((min-colors 16777216)) . (:foreground ,chocolate3))
+                       (((min-colors 256)) . (:foreground ,rgb420))))
+  `(magit-refname ((((min-colors 16777216)) . (:foreground ,aluminium3))
+                   (((min-colors 256)) . (:foreground ,gray18))))
 
 ;;;;; `magit-faces' — Controlling Git from Emacs — Cherrypicking
   `(magit-cherry-equivalent ((((min-colors 16777216)) . (:foreground ,plum4))
