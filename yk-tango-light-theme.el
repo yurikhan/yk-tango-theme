@@ -664,7 +664,6 @@
 (custom-theme-set-variables 'yk-tango-light
   `(highlight-changes-colors (,plum3 ,skyblue3 ,chameleon3 ,chocolate3 ,orange3 ,butter3))
   `(ansi-color-names-vector ,(vector black scarletred2 chameleon2 butter2
-                                     skyblue2 plum2 chocolate2 aluminium3))
-  `(ansi-color-map ,(ansi-color-make-color-map)))
+                                     skyblue2 plum2 chocolate2 aluminium3)))
 
 (provide-theme 'yk-tango-light)
