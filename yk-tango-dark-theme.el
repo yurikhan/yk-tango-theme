@@ -484,7 +484,7 @@
   `(dired-header ((default . (:inherit bold))))
   `(dired-directory ((((min-colors 16777216)) . (:foreground ,skyblue4))
                      (((min-colors 256)) . (:foreground ,rgb234))))
-  `(dired-symlink ((((min-colors 16777216)) . (:foreground ,orange3))
+  `(dired-symlink ((((min-colors 16777216)) . (:foreground ,orange2))
                     (((min-colors 256)) . (:foreground ,rgb520))))
   `(dired-ignored ((default . (:inherit shadow))))
   `(dired-flagged ((((min-colors 16777216)) . (:foreground ,scarletred4))
