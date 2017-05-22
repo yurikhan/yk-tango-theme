@@ -396,7 +396,8 @@
   `(tabbar-highlight ((default . (:underline nil))))
   `(tabbar-button ((default . (:box unspecified))))
   `(tabbar-button-highlight ((default . ())))
-  `(tabbar-unselected ((default . (:inherit tabbar-default))))
+  `(tabbar-unselected ((default . (:inherit tabbar-default
+                                   :box (:line-width 1 :style released-button)))))
   `(tabbar-selected ((default . (:inherit tabbar-unselected :foreground unspecified))
                      (((min-colors 16777216)) . (:background ,aluminium6 :overline ,skyblue4))
                      (((min-colors 256)) . (:background ,gray23))))
