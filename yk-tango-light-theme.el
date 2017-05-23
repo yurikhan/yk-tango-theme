@@ -381,11 +381,11 @@
   `(linum ((default . (:inherit fringe))
            (((min-colors 16777216)) . (:foreground ,aluminium2))
            (((min-colors 256)) . (:foreground ,gray10))))
-  `(linum-leading-zero ((default . (:inherit linum))
-                        (((min-colors 16777216))
-                         . (:foreground ,aluminium4 :distant-foreground ,aluminium4))
-                        (((min-colors 256))
-                         . (:foreground ,gray20 :distant-foreground ,gray20))))
+  `(yk-linum-padding ((default . (:inherit linum))
+                      (((min-colors 16777216))
+                       . (:foreground ,aluminium4 :distant-foreground ,aluminium4))
+                      (((min-colors 256))
+                       . (:foreground ,gray20 :distant-foreground ,gray20))))
 
 ;;;;; `tabbar' — Display a tab bar in the header line
   ;; Caveat: The code in `tabbar' that extracts background from this face
