@@ -419,14 +419,20 @@
   `(tabbar-default ((default . (:height 0.9 :inherit yk-ui))
                     (((min-colors 16777216)) . (:background ,aluminium02))
                     (((min-colors 256)) . (:background ,gray8))))
+  `(tabbar-separator ((default . (:inherit tabbar-default))))
   `(tabbar-highlight ((default . (:underline nil))))
   `(tabbar-button ((default . (:box unspecified))))
   `(tabbar-button-highlight ((default . ())))
+  `(tabbar-key-binding ((default . (:inherit (shadow tabbar-button) :weight normal))))
   `(tabbar-unselected ((default . (:inherit tabbar-default
                                    :box (:line-width 1 :color ,aluminium1)))))
+  `(tabbar-unselected-highlight ((default . (:inherit (tabbar-unselected tabbar-highlight)))))
+  `(tabbar-unselected-modified ((default . (:inherit tabbar-unselected))))
   `(tabbar-selected ((default . (:inherit tabbar-unselected :foreground unspecified))
                      (((min-colors 16777216)) . (:background ,aluminium01 :overline ,skyblue4))
                      (((min-colors 256)) . (:background ,gray4))))
+  `(tabbar-selected-highlight ((default . (:inherit (tabbar-selected tabbar-highlight)))))
+  `(tabbar-selected-modified ((default . (:inherit tabbar-selected))))
 
 ;;;;; `widget-faces' — Faces used by the widget library
   `(widget-button-pressed ((((min-colors 16777216)) . (:foreground ,scarletred4))
