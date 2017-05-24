@@ -296,7 +296,7 @@
   `(font-lock-warning-face ((default . (:inherit warning))))
 
 ;;;;; `nxml-faces' — New XML editing mode
-  `(yk-nxml-cdata ((((min-colors 16777216)) . (:background ,aluminium01))
+  `(yk-nxml-cdata ((((min-colors 16777216)) . (:background ,aluminium02))
                    (((min-colors 256)) . (:background ,gray5))))
   `(nxml-delimiter ((((min-colors 16777216)) . (:foreground ,aluminium2))
                     (((min-colors 256)) . (:foreground ,gray13))))
